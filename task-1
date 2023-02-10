@@ -1,0 +1,30 @@
+task-1:
+ifra prep
+have k8 cluster , need to have own networking, vpc, availaibilty zone, subnets - public & private, IGW and Natgateway, routetable
+
+eks cluster - some machines in the public subnets
+            - some machines in the private subnets
+       
+1. terraform'
+- ec2 machine - install terraform + aws cli ...> IAM role - admin access + s3 bucket
+a. create a ec2 machine - t2. medium 
+b. IAM role - admin
+c. installations : terraform + aws cli + eksctl + kubectl + also please run whatsapp message
+d. create s3 bucket to store tf state - manually
+
+2. provider.tf
+3. vpc.tf - modules
+4. terraform apply - 20+ resources (vpc, subnets, etc)
+5. need to create a EKS cluster using eksctl file which is already given by upgrad, 
+EKSCTL file - if you change cluster name , tags in the nodegroup will be changed, update VPC and Subnet ID's, you can also change min no of instances so that you can have 2-3 instances.
+- make min size 1 in desired capacity of nodegroups., desired capacity 1 (make 0 = 1) - total 7 changes
+run command eksctl create cluster -f filename
+6. kubectl get nodes
+7. kubectl top nodes
+8. metric server + cluster auto scaler command (which decides the desired capacity of machine)
+install metric server - https://docs.aws.amazon.com/eks/latest/userguide/metrics-server.html
+create cluster autoscaler.yaml - https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml- you just need to update clustername here
+run this file - check commands in k8 section
+eksctl create ng -f cluster.yaml - to create new node group (for the tainted node)
+
+            
