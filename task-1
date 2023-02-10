@@ -24,7 +24,7 @@ run command eksctl create cluster -f filename
 8. metric server + cluster auto scaler command (which decides the desired capacity of machine)
 install metric server - https://docs.aws.amazon.com/eks/latest/userguide/metrics-server.html
 create cluster autoscaler.yaml - https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml- you just need to update clustername here
-run this file - check commands in k8 section
+run this file - kubectl apply -f autoscaler.yaml
 eksctl create ng -f cluster.yaml - to create new node group (for the tainted node)
 
             
