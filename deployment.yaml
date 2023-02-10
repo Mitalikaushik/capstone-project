@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: upg-loadme-deployment
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
-      app: c37
+      app: upg-loadme
   template:
     metadata:
-      name: nginx
+      name: upg-loadme-deployment
       labels:
-        app: c37
+        app: upg-loadme
     spec:
       containers:
-      - name: nginx
-        image: nginx
+      - name: upg-loadme
+        image: 788051511621.dkr.ecr.us-east-1.amazonaws.com/capstone-mitali:latest
       tolerations:
       - key: "app"
         operator: "Equal"
@@ -25,11 +25,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx
+  name: upg-loadme-deployment
 spec:
   type: LoadBalancer
   selector:
-    app: c37
+    app: upg-loadme
   ports:
     - protocol: TCP
       port: 80
