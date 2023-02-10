@@ -4,10 +4,31 @@ as soon as you you kill the pod, the changes will be lost.
 we need to deploy stateful state
 1. deploy a stateful set of redis - helm - refer redis.yaml
 ( if you are entering some data to redis, the new data should compe up, not lost)
-2. Enter some data into statefulset - using RedisCli command 
-3. i will create a redis pod [kubectl run redis --image redis]
+run helm repo add my-repo https://charts.bitnami.com/bitnami
+run helm install my-release my-repo/redis -f redis.yaml
+- it will override the value
+kubectl get pods (1 master $ 1 replica)
+2. now verify if this is stateful state - enter some dta into redis
+kubectl run redis --image redis
+(Enter some data into statefulset -either using RedisCli command . i will create a redis pod [kubectl run redis --image redis])
+kubectl get svc
+kubectl get pods
+kubectl exec -it redis bash (redis pod that craeted for verification purposes)
+redis-cli -h my-release-redis-master -p 6379        (service name)
+connected to redis stateful set
+run 
+SET batch c37
+GET batch c37
+exit
 4. delete the statefulset pods - new pods will come up
+kubectl get pods
+kubectl delete pod my-release-redis-master-0 my-release-redis-replicas-0 my-release-redis-replicas-1 my-release-redis-replicas-2
+run kubectl get pods - ideally new pods shall not have data
 5. try to retreive the data
+kubectl exec -it redis bash
+redis-cli -h my-release-redis-master -p 6379
+GET batch
+
 
 
 
