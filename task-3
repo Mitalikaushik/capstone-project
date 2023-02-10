@@ -1,0 +1,16 @@
+stateless - if you are making any changes in pod, those changes are there till the time the container is alive.
+as soon as you you kill the pod, the changes will be lost.
+- to persist that changes we use docker volume
+we need to deploy stateful state
+1. deploy a stateful set of redis - helm - refer redis.yaml
+( if you are entering some data to redis, the new data should compe up, not lost)
+2. Enter some data into statefulset - using RedisCli command 
+3. i will create a redis pod [kubectl run redis --image redis]
+4. delete the statefulset pods - new pods will come up
+5. try to retreive the data
+
+
+
+
+
+
