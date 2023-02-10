@@ -18,7 +18,7 @@ redis-cli -h my-release-redis-master -p 6379        (service name)
 connected to redis stateful set
 run 
 SET batch c37
-GET batch c37
+GET batch 
 exit
 4. delete the statefulset pods - new pods will come up
 kubectl get pods
