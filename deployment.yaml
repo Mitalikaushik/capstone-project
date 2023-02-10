@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: c37
+  template:
+    metadata:
+      name: nginx
+      labels:
+        app: c37
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+      tolerations:
+      - key: "app"
+        operator: "Equal"
+        value: "upg-loadme"
+        effect: "NoSchedule"   
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+spec:
+  type: LoadBalancer
+  selector:
+    app: c37
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8081
+     
