@@ -1,0 +1,44 @@
+task -2 
+ given a application:
+server.jsn, node.jsn
+
+need to write down docker file for it
+FROM node: 16
+COPY ..
+RUN npm install
+RUN npm build
+CMD ["npm", "start"]
+
+1. Dockerfile
+2. docker build .> image
+3. docker run -it -p p1(can be anything):p2(depends on the process that you see in the logs) image-id
+4. ec2 ip:p1
+5. push the image to ECR
+
+6. write a deployment yaml and service.yaml using Loadbalancer
+hit loadbalancer from the browser - "hello world" 
+
+they are asking how many node groups do we have - 2
+so they are asking for 1 more group that have taints
+so you need to add one more node group in eksctl file - copy the node in eksctl file
+- apply taint using 
+below label
+taints:
+      - key: anything
+        value: "c37"
+        effect: NoSchedule
+7. new nodegroup in eksctl (ideally should be in private subnet)
+8. eksctl create ng -f filename
+9. deployment.yaml with tolerations
+10. service.yaml
+11. lb - "hello world"
+        
+        
+  
+  
+
+
+
+
+
+
