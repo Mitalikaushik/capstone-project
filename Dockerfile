@@ -1,15 +1,9 @@
-FROM node:14-alpine
-
-# Create app directory
+FROM node:16
+RUN  mkdir /app
 WORKDIR /app
-# Install app dependencies,make ensure both package.json AND package-lock.json are copied
-COPY package*.json ./
-
+COPY package.json /app
 RUN npm install
-
-# Bundle app source
-COPY . .
-
+COPY server.js /app
 EXPOSE 8081
+CMD ["npm","start"]
 
-CMD [ "node", "server.js" ]
