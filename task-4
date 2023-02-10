@@ -1,0 +1,4 @@
+can ignore subtask-3
+1. install prometheus using helm chart - mentioned in the task
+2. write down HPA file for upg-loadme app
+kubectl get hpa -n demo (list in the namespaces)
